@@ -20,6 +20,19 @@ function getRandNum() {
 getRandNum()
 console.log(randNum)
 
+function getComputerChoice() {
+    if (randNum == 1) {
+        return computerChoice = 'rock'
+    }
+    else if (randNum == 2) {
+        return computerChoice = 'paper'
+    }
+    else {
+        return computerChoice = 'scissors'
+    }
+}
+getComputerChoice()
+console.log(computerChoice)
 
 
 
