@@ -13,7 +13,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 function getPlayerChoice() { 
-    return playerChoice = prompt('Rock, Paper or Scissors?')
+    return playerChoice = (prompt('Rock, Paper or Scissors?')).toLowerCase()
 }
 /* getPlayerChoice()
 console.log(`the player's choice is ${playerChoice}`) */
