@@ -7,8 +7,11 @@
 let playerChoice;
 let computerChoice;
 let randNum;
+let playerScore = 0;
+let computerScore = 0;
 
 function getPlayerChoice() { 
+    if 
     return playerChoice = (prompt('Rock, Paper or Scissors?')).toLocaleLowerCase()
 }
 getPlayerChoice()
@@ -32,7 +35,38 @@ function getComputerChoice() {
     }
 }
 getComputerChoice()
-console.log(computerChoice)
+console.log(`the computer choice is ${computerChoice}`)
+
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+        console.log("it's a draw.");
+        playerScore++;
+        return computerScore++
+    }
+    
+    else if (playerChoice == 'rock' && computerChoice == 'scissors' ||
+             playerChoice == 'paper' && computerChoice == 'rock' ||
+             playerChoice == 'scissors' && computerChoice == 'paper') {
+        console.log(`Human wins`)
+        return playerScore++        
+    }
+    else if (computerChoice == 'rock' && playerChoice == 'scissors' ||
+             computerChoice == 'paper' && playerChoice == 'rock' ||
+             computerChoice == 'scissors' && playerChoice == 'paper') {
+        console.log('Computer wins')
+        return computerScore++       
+    }
+    else if (playerChoice == 0) {
+        alert('Game cancelled :( I hope we play next time.')
+    }
+    else {
+        console.log('Please enter a valid choice!')
+    }
+}
+
+playRound(playerChoice, computerChoice)
+console.log(playerScore)
+console.log(computerScore)
 
 
 
