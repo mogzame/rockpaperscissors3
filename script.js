@@ -38,6 +38,15 @@ function getComputerChoice() {
 /* getComputerChoice()
 console.log(`the computer choice is ${computerChoice}`) */
 
+/* function lowerCase() {
+    if (getPlayerChoice() == true) {
+        return playerChoice = playerChoice.toLowerCase()
+    }
+    else return playerChoice = 0
+}
+lowerCase()
+console.log(playerChoice) */
+
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         console.log("it's a draw.");
