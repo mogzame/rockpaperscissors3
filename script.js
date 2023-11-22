@@ -80,6 +80,19 @@ game()
 console.log(playerScore)
 console.log(computerScore)
 
+function alertWinner() {
+    if (playerScore > computerScore) {
+        alert(`You win ${playerScore} - ${computerScore}. Looks like humans will always be superior after all! `)
+    }
+    else if (computerScore> playerScore) {
+        alert(`You got beaten ${computerScore} - ${playerScore} by a machine!`)
+    }
+    else if (computerScore == playerScore) {
+        alert("Looks like it's a draw. We can always play again!")
+    }
+}
+
+alertWinner()
 
 
 
