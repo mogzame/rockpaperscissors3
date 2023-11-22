@@ -1,4 +1,6 @@
 //write a function that gets user choice and stores it in a var
+//if player types something (= true) it takes it tolower case
+//if player cancelled (=false) it shows we play again next time
 //write a function that gets a random num from 1 to 3 and attach it to either rock paper or scissors and stores it in a var
 //write a function playRound that takes both choices as arg and increment the score of both players
 //loop the previous function 5 times
@@ -11,17 +13,16 @@ let playerScore = 0;
 let computerScore = 0;
 
 function getPlayerChoice() { 
-    if 
-    return playerChoice = (prompt('Rock, Paper or Scissors?')).toLocaleLowerCase()
+    return playerChoice = prompt('Rock, Paper or Scissors?')
 }
-getPlayerChoice()
-console.log(`the player's choice is ${playerChoice}`)
+/* getPlayerChoice()
+console.log(`the player's choice is ${playerChoice}`) */
 
 function getRandNum() {
     return randNum = Math.floor(Math.random() * 3) + 1
 }
-getRandNum()
-console.log(randNum)
+/* getRandNum()
+console.log(randNum) */
 
 function getComputerChoice() {
     if (randNum == 1) {
@@ -34,8 +35,8 @@ function getComputerChoice() {
         return computerChoice = 'scissors'
     }
 }
-getComputerChoice()
-console.log(`the computer choice is ${computerChoice}`)
+/* getComputerChoice()
+console.log(`the computer choice is ${computerChoice}`) */
 
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
@@ -47,13 +48,13 @@ function playRound(playerChoice, computerChoice) {
     else if (playerChoice == 'rock' && computerChoice == 'scissors' ||
              playerChoice == 'paper' && computerChoice == 'rock' ||
              playerChoice == 'scissors' && computerChoice == 'paper') {
-        console.log(`Human wins`)
+        console.log(`Human wins. ${playerChoice} beats ${computerChoice}`)
         return playerScore++        
     }
     else if (computerChoice == 'rock' && playerChoice == 'scissors' ||
              computerChoice == 'paper' && playerChoice == 'rock' ||
              computerChoice == 'scissors' && playerChoice == 'paper') {
-        console.log('Computer wins')
+        console.log(`Computer wins. ${computerChoice} beats ${playerChoice}`)
         return computerScore++       
     }
     else if (playerChoice == 0) {
@@ -64,7 +65,18 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-playRound(playerChoice, computerChoice)
+/* playRound(playerChoice, computerChoice) */
+
+function game() {
+    for (i = 0; i < 5; i++) {
+        getPlayerChoice()
+        getRandNum()
+        getComputerChoice()
+        playRound(playerChoice, computerChoice)
+    }
+}
+
+game()
 console.log(playerScore)
 console.log(computerScore)
 
