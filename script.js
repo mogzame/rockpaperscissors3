@@ -1,29 +1,24 @@
-//write a function that gets user choice and stores it in a var
-//if player types something (= true) it takes it tolower case
-//if player cancelled (=false) it shows we play again next time
-//write a function that gets a random num from 1 to 3 and attach it to either rock paper or scissors and stores it in a var
-//write a function playRound that takes both choices as arg and increment the score of both players
-//loop the previous function 5 times
-// decide who won by compring the scores
-
 let playerChoice;
 let computerChoice;
 let randNum;
 let playerScore = 0;
 let computerScore = 0;
+let roundNumber = 0;
 
-function getPlayerChoice() { 
-    return playerChoice = (prompt('Rock, Paper or Scissors?')).toLowerCase()
-}
-/* getPlayerChoice()
-console.log(`the player's choice is ${playerChoice}`) */
+let body = document.querySelector('body')
+let container = document.querySelector('.container');
+let playerP = document.querySelector('.btn.p')
+let playerR = document.querySelector('.btn.r')
+let playerS = document.querySelector('.btn.s')
+let result = document.querySelector('.result')
+let score = document.querySelector('.score')
+let announce = document.querySelector('.announce')
+let playAgainBtn = document.createElement('button');
+score.textContent = 'Human 0 - 0 Computer'
 
 function getRandNum() {
     return randNum = Math.floor(Math.random() * 3) + 1
 }
-/* getRandNum()
-console.log(randNum) */
-
 function getComputerChoice() {
     if (randNum == 1) {
         return computerChoice = 'rock'
@@ -35,21 +30,10 @@ function getComputerChoice() {
         return computerChoice = 'scissors'
     }
 }
-/* getComputerChoice()
-console.log(`the computer choice is ${computerChoice}`) */
-
-/* function lowerCase() {
-    if (getPlayerChoice() == true) {
-        return playerChoice = playerChoice.toLowerCase()
-    }
-    else return playerChoice = 0
-}
-lowerCase()
-console.log(playerChoice) */
 
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
-        console.log("it's a draw.");
+        result.textContent = "it's a draw.";
         playerScore++;
         return computerScore++
     }
@@ -57,24 +41,33 @@ function playRound(playerChoice, computerChoice) {
     else if (playerChoice == 'rock' && computerChoice == 'scissors' ||
              playerChoice == 'paper' && computerChoice == 'rock' ||
              playerChoice == 'scissors' && computerChoice == 'paper') {
-        console.log(`Human wins. ${playerChoice} beats ${computerChoice}`)
-        return playerScore++        
+        result.textContent = `Human wins. ${playerChoice} beats ${computerChoice}`
+        return playerScore++
     }
     else if (computerChoice == 'rock' && playerChoice == 'scissors' ||
              computerChoice == 'paper' && playerChoice == 'rock' ||
              computerChoice == 'scissors' && playerChoice == 'paper') {
-        console.log(`Computer wins. ${computerChoice} beats ${playerChoice}`)
+        result.textContent = `Computer wins. ${computerChoice} beats ${playerChoice}`
         return computerScore++       
     }
-    else if (playerChoice == 0) {
-        alert('Game cancelled :( I hope we play next time.')
-    }
-    else {
-        console.log('Please enter a valid choice!')
-    }
+}
+function round() {
+            getRandNum()
+            getComputerChoice()
+            playRound(playerChoice, computerChoice)
 }
 
-/* playRound(playerChoice, computerChoice) */
+function announceWinner() {
+    if (playerScore > computerScore) {
+        announce.textContent = `You win ${playerScore} - ${computerScore}. Looks like humans will always be superior after all! `
+    }
+    else if (playerScore < computerScore) {
+        announce.textContent = `You got beaten ${computerScore} - ${playerScore} by a machine!`
+    }
+    else {
+        "Looks like it's a draw. We can always play again!"
+    }
+}
 
 function game() {
     for (i = 0; i < 5; i++) {
@@ -84,10 +77,6 @@ function game() {
         playRound(playerChoice, computerChoice)
     }
 }
-
-game()
-console.log(playerScore)
-console.log(computerScore)
 
 function alertWinner() {
     if (playerScore > computerScore) {
@@ -101,7 +90,39 @@ function alertWinner() {
     }
 }
 
-alertWinner()
+container.addEventListener('click', (e) => {
+        if (roundNumber === 4) {
+            announceWinner()
+            body.append(playAgainBtn);
+            playAgainBtn.textContent = 'Play Again!';
+            playAgainBtn.addEventListener('click', () => {
+                location.reload();
+            })            
 
+
+        }
+        
+        else {
+        switch(e.target.textContent) {
+            case 'Rock':
+                playerChoice = 'rock'
+                round()
+            break;
+            case 'Paper':
+                playerChoice = 'paper'
+                round()
+            break;
+            case 'Scissors':
+                playerChoice = 'scissors'
+                round()
+            break;
+            }
+        score.textContent = `Human ${playerScore} - ${computerScore} Computer`
+        roundNumber++;
+        console.log(`round number is ${roundNumber}`)
+        
+        }
+    }
+)
 
 
